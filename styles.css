@@ -1,6 +1,89 @@
-html,
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 3rem;
+  color: #dc4848;
+  background-color: #f2f1ed;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-card {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  border-radius: 0.1em;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2),
+    inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
+  perspective: 200px;
+}
+
+.top,
+.bottom,
+.flip-card.flip::before,
+.flip-card.flip::after {
+  height: 0.75em;
+  line-height: 1;
+  padding: 0.25em;
+  overflow: hidden;
+}
+
+.top,
+.flip-card.flip::before {
+  background-color: #f7f7f7;
+  border-top-left-radius: 0.1em;
+  border-top-right-radius: 0.1em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bottom,
+.flip-card.flip::after {
+  background-color: white;
+  border-bottom-left-radius: 0.1em;
+  border-bottom-right-radius: 0.1em;
+  display: flex;
+  align-items: flex-end;
+}
+
+.flip-card.flip::before {
+  position: absolute;
+  content: attr(data-top-number);
+  width: 100%;
+  transform-origin: bottom;
+  animation: flip-down 350ms ease-in;
+}
+
+@keyframes flip-down {
+  100% {
+    transform: rotateX(90deg);
+  }
+}
+
+.flip-card.flip::after {
+  position: absolute;
+  bottom: 0;
+  content: attr(data-bottom-number);
+  width: 100%;
+  transform-origin: top;
+  transform: rotateX(90deg);
+  animation: flip-up 350ms ease-out 350ms;
+}
+
+@keyframes flip-up {
+  100% {
+    transform: rotateX(0deg);
+  }
 }
