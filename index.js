@@ -1,8 +1,8 @@
 const startNumber = 9;
 let counter = startNumber;
 const flipCard = document.querySelector(".flip-card");
-const topChild = document.querySelector(".top");
-const bottomChild = document.querySelector(".bottom");
+const topChild = flipCard.querySelector(".top");
+const bottomChild = flipCard.querySelector(".bottom");
 
 topChild.textContent = counter;
 bottomChild.textContent = counter;
